@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import jsonFile from "jsonfile";
 import gitsha from "gitsha";
 import path from "path";
