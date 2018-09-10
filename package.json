@@ -4,7 +4,7 @@
   "description": "Saves git SHA and dependency versions from package.json",
   "main": "index.js",
   "bin": {
-    "save-versions": "index.js"
+    "save-versions": "dist/save-versions.js"
   },
   "files": [
     "index.js",
