@@ -1,0 +1,14 @@
+{
+  "extends": [ "eslint:recommended", "plugin:prettier/recommended" ],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true,
+    "es6": true
+  },
+  "plugins": [],
+  "rules": {
+    "max-len": [2, { "ignorePattern": "^import", "ignoreComments": true, "ignoreTrailingComments": true, "ignoreStrings": true }]
+  }
+}

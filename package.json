@@ -1,0 +1,48 @@
+{
+  "name": "save-versions",
+  "version": "1.0.0",
+  "description": "Saves git SHA and dependency versions from package.json",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "scripts": {
+    "prettier": "prettier --write 'src/**/*.js'",
+    "lint": "eslint src/",
+    "build": "babel src -d dist",
+    "patch": "npm version patch && npm publish",
+    "minor": "npm version minor && npm publish",
+    "major": "npm version major && npm publish",
+    "prepublish": "npm run lint && npm test && npm run build",
+    "postpublish": "git push origin master --tags",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/czebe/save-versions.git"
+  },
+  "author": "Marton Czebe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/czebe/save-versions/issues"
+  },
+  "homepage": "https://github.com/czebe/save-versions#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.5.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "prettier": "^1.14.2"
+  },
+  "dependencies": {
+    "gitsha": "^0.1.0",
+    "jsonfile": "^5.0.0",
+    "minimist": "^1.2.0",
+    "semver-regex": "^2.0.0"
+  }
+}
