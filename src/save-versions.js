@@ -55,10 +55,39 @@ const saveDependencyVersion = (dependencies, output) => {
     });
 };
 
+/**
+ * Local IP address is hardcoded into resource URLs to allow:
+ * 1) external testing of the local development/http server (eg. access https://10.xx.xx.xx over your local network)
+ * 2) external testing through BrowserStack (IOS will not load resources with `localhost` URLs)
+ * 3) external testing from VirtualBox appliances
+ */
+const saveIp = (host, port, output) => {
+  const url = `https://${host}:${port}/`;
+  jsonFile.writeFile(
+    path.resolve(output),
+    {
+      LOADER: {
+        BASE_URL: url,
+        CDN_URL: url
+      }
+    },
+    { spaces: 2 },
+    err => {
+      if (err) {
+        throw new Error(err);
+      }
+    }
+  );
+};
+
 if (argv.gitsha) {
   saveGitSha(argv.gitsha);
 }
 
-if (argv.dependencies && argv.output) {
-  saveDependencyVersion(argv.dependencies, argv.output);
+if (argv.dependencies && argv.dependenciesOutput) {
+  saveDependencyVersion(argv.dependencies, argv.dependenciesOutput);
+}
+
+if (argv.host && argv.port && argv.hostOutput) {
+  saveIp(argv.host, argv.port, argv.hostOutput);
 }
